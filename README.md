@@ -68,7 +68,7 @@ Before you begin, ensure you have the following installed:
 
 ### User Login
 
-- After successful registration, the user can log in with the same credentials. If the login is successful, the user will be redirected to a specific dashboard URL (currently `http://mercury.digiturk.net:4723/device-farm/`).
+- After successful registration, the user can log in with the same credentials. If the login is successful, the user will be redirected to a specific dashboard URL (currently `YOUR REDIRECT URL`).
 
 ### Error Messages
 

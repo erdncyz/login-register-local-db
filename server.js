@@ -1,4 +1,3 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
@@ -8,7 +7,7 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json()); // JSON formatını işlemek için
 app.use(express.static('public'));
 
 // SQLite database setup
@@ -44,14 +43,14 @@ app.post('/register', async (req, res) => {
       return res.status(500).send('Error checking user');
     }
     if (row) {
-      res.send('<p style="color:red;text-align:center;">User already exists. Please choose a different username.</p><a href="/register">Go Back</a>');
+      return res.status(400).send('User already exists. Please choose a different username.');
     } else {
       const hashedPassword = await bcrypt.hash(password, 10);
       db.run('INSERT INTO users (username, password) VALUES (?, ?)', [username, hashedPassword], function(err) {
         if (err) {
           return res.status(500).send('Error registering new user');
         }
-        res.send('<p style="color:green;text-align:center;">User successfully registered! You can now <a href="/login">login</a>.</p>');
+        res.status(200).send('User successfully registered! You can now <a href="/login">login</a>.');
       });
     }
   });
@@ -66,9 +65,9 @@ app.post('/login', (req, res) => {
     }
     if (row && await bcrypt.compare(password, row.password)) {
       const token = jwt.sign({ username }, 'your_jwt_secret', { expiresIn: '1h' });
-      res.redirect('http://mercury.digiturk.net:4723/device-farm/');
+      return res.status(200).send(); // Başarılı login
     } else {
-      res.send('<p style="color:red;text-align:center;">Invalid username or password</p><a href="/login">Go Back</a>');
+      return res.status(400).send('Invalid username or password');
     }
   });
 });
