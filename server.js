@@ -65,7 +65,8 @@ app.post('/login', (req, res) => {
     }
     if (row && await bcrypt.compare(password, row.password)) {
       const token = jwt.sign({ username }, 'your_jwt_secret', { expiresIn: '1h' });
-      return res.status(200).send(); // Başarılı login
+      console.log(`Token for ${username}: ${token}`);
+      return res.status(200).send();      
     } else {
       return res.status(400).send('Invalid username or password');
     }
