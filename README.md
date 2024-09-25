@@ -46,7 +46,10 @@ Before you begin, ensure you have the following installed:
 
 4. Open your browser and navigate to:
     - **Login page:** `http://localhost:3000/login`
+      <img width="571" alt="image" src="https://github.com/user-attachments/assets/dfb994d6-f7f3-4522-9fe9-5d2000d4ff27">
+
     - **Register page:** `http://localhost:3000/register`
+      <img width="544" alt="image" src="https://github.com/user-attachments/assets/3b4c4d70-13bb-4187-be50-713d9b8d1e32">
 
 ## Project Structure
 
